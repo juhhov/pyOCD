@@ -364,7 +364,9 @@ class Session(Notifier):
             self._closed = False
             self._probe.set_clock(self.options.get('frequency'))
             if init_board:
+                self._probe.assert_reset(True)
                 self._board.init()
+                self._probe.assert_reset(False)
                 self._inited = True
 
     def close(self):
